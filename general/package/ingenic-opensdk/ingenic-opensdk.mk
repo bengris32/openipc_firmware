@@ -10,7 +10,7 @@ INGENIC_OPENSDK_SITE = https://github.com/openipc/openingenic
 INGENIC_OPENSDK_VERSION = $(shell git ls-remote $(INGENIC_OPENSDK_SITE) HEAD | head -1 | cut -f1)
 else
 INGENIC_OPENSDK_SITE = https://github.com/openipc/openingenic/archive
-INGENIC_OPENSDK_SOURCE = master.tar.gz
+INGENIC_OPENSDK_SOURCE = bd45b48d320dadeeae4a14754989c7907ac6ead9.tar.gz
 endif
 
 INGENIC_OPENSDK_LICENSE = GPL-3.0

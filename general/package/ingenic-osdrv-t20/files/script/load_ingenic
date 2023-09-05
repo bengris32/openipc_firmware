@@ -1,6 +1,5 @@
 #!/bin/sh
 
-KMOD_PATH=/lib/modules/$(uname -r)/ingenic
 SOC=$(ipcinfo -f || fw_printenv -n soc)
 vendor=$(ipcinfo -v)
 
@@ -24,7 +23,7 @@ check_return() {
 
 lsmod | grep "sinfo" >/dev/null
 if [ $? -ne 0 ]; then
-	insmod ${KMOD_PATH/%\//}/sinfo.ko
+	modprobe sinfo
 	check_return "insmod sinfo"
 fi
 
@@ -86,19 +85,19 @@ echo --------------------
 
 lsmod | grep "tx_isp" > /dev/null
 if [ $? -ne 0 ] ;then
-	insmod ${KMOD_PATH/%\//}/tx-isp-${SOC}.ko ${ISP_PARAM}
-	check_return "insmod isp drv"
+	modprobe tx-isp-${SOC} ${ISP_PARAM}
+	check_return "modprobe isp drv"
 fi
 
 lsmod | grep ${SENSOR} > /dev/null
 if [ $? -ne 0 ] ;then
-	insmod ${KMOD_PATH/%\//}/sensor_${SENSOR}.ko ${SENSOR_PARAM}
-	check_return "insmod sensor drv"
+	modprobe sensor_${SENSOR}_${SOC} ${SENSOR_PARAM}
+	check_return "modprobe sensor drv"
 fi
 
 lsmod | grep "audio" >/dev/null
 if [ $? -ne 0 ]; then
-	insmod ${KMOD_PATH/%\//}/audio2.ko
-	check_return "insmod audio"
+	modprobe audio
+	check_return "modprobe audio"
 fi
 

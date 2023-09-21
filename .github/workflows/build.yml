@@ -52,6 +52,7 @@ jobs:
           - ssc335de
           - ssc337
           - ssc337de
+          - ssc30kd
           - ssc30kq
           - ssc338q
           - t31
@@ -103,6 +104,8 @@ jobs:
             release: lite
           - platform: rv1126
             release: lite
+          - platform: ssc325
+            release: lite
           - platform: t10
             release: lite
           - platform: t20
@@ -142,9 +145,6 @@ jobs:
             release: lite
             custom: onlyci
           - platform: s3l
-            release: lite
-            custom: onlyci
-          - platform: ssc325
             release: lite
             custom: onlyci
 
